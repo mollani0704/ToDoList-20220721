@@ -15,5 +15,21 @@
  				NOW()
  				);
   	</insert>
-  
+  	<select id="readContentList" resultType="com.springboot.todolist.domain.content.Content">
+  		SELECT 
+ 			cm.contentcode,
+ 			cm.content,
+ 			cm.usercode,
+ 			um.username,
+ 			cm.createdate,
+ 			cm.updatedate
+ 		FROM 
+ 			content_mst cm
+ 		LEFT OUTER JOIN user_mst um ON (um.usercode = cm.usercode)
+ 		ORDER by
+ 			cm.createdate DESC,
+ 			cm.contentcode DESC
+ 		LIMIT 0, 10;
+  	
+  	</select>
   </mapper>
